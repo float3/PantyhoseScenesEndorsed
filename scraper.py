@@ -34,7 +34,7 @@ if __name__ == '__main__':
     parser.add_argument('folder', help='Folder to save images to', nargs='?')
     args = parser.parse_args()
 
-    outpath = Path(args.folder) if args.folder else Path(__file__).parent / "down"
+    outpath = Path(args.folder) if args.folder else Path(__file__).parent / "Manga"
 
     loop = asyncio.get_event_loop()
     tasks = []
