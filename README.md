@@ -9,7 +9,7 @@ pip install beautifulsoup4
 # Running
 The following commands will download 300 chapters of vagabond in different directories
 ```cmd
-python scraper.py https://vagabond-chapters.com/manga/vagabond-chapter- 300
-python scraper.py https://vagabond-chapters.com/manga/vagabond-chapter- 300 C:\Manga\Vagabond\
-python scraper.py https://vagabond-chapters.com/manga/vagabond-chapter- 300 Manga\Vagabond\
+python scraper.py "https://vagabond-chapters.com/manga/vagabond-chapter-{chapter}" 300
+python scraper.py "https://vagabond-chapters.com/manga/vagabond-chapter-{chapter}" 300 C:\Manga\Vagabond\
+python scraper.py "https://vagabond-chapters.com/manga/vagabond-chapter-{chapter}" 300 Manga\Vagabond\
 ```
