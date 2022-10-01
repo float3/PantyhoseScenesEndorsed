@@ -1,8 +1,9 @@
-from bs4 import BeautifulSoup
-import requests
-import shutil
 import os
+import shutil
 import sys
+
+import requests
+from bs4 import BeautifulSoup
 
 
 def iterate_images(result, i, path):
