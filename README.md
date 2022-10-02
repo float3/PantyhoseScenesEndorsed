@@ -5,6 +5,7 @@ I haven't tested yet
 # Requirements
 ```cmd
 pip install beautifulsoup4
+pip install aiohttp
 ```
 # Running
 The following commands will download 300 chapters of vagabond in different directories
