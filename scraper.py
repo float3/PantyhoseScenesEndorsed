@@ -1,10 +1,10 @@
 import argparse
 import asyncio
 from pathlib import Path
+from urllib.parse import urlparse
 
 import aiohttp
 from bs4 import BeautifulSoup
-from urllib.parse import urlparse
 
 
 def extract_next_link(html):
