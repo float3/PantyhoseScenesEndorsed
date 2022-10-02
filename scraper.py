@@ -10,7 +10,7 @@ from bs4 import BeautifulSoup
 def extract_next_link(html):
     soup = BeautifulSoup(html, "html.parser")
     links = soup.find_all("a")
-    next_button = [link for link in links if "next" in link.text.lower()]
+    next_button = [link for link in links if "next" or "continue" in link.text.lower()]
     if next_button:
         return next_button[0]["href"]
 
