@@ -46,14 +46,14 @@ async def download_images(url, folder):
 
 
 # Crawl from a start site via the "next" button and download all images
-async def crawl(start_url, folder, max_steps=10):
+async def crawl(start_url, folder, start_chapter=1, max_steps=10):
     url = start_url
-    index = 0
+    index = start_chapter
     tasks = []
     async with aiohttp.ClientSession(headers=HEADERS) as session:
         while url:
-            index += 1
             tasks.append(asyncio.create_task(download_images(url, Path(folder) / f"ch{index}")))
+            index += 1
             async with session.get(url) as response:
                 print(f"Downloading {url}")
                 html = await response.text()
@@ -66,6 +66,7 @@ async def crawl(start_url, folder, max_steps=10):
 if __name__ == "__main__":
     parser = argparse.ArgumentParser()
     parser.add_argument("url", help="URL to download images from")
+    parser.add_argument("start_chapter", help="chapter to start downloading from")
     parser.add_argument("max_chapters", help="Maximum number of chapters to download")
     parser.add_argument("folder", help="Folder to save images to", nargs="?")
     args = parser.parse_args()
@@ -78,8 +79,8 @@ if __name__ == "__main__":
     loop = asyncio.get_event_loop()
     tasks = []
     if r"{chapter}" not in args.url:
-        tasks.append(crawl(args.url, outpath, int(args.max_chapters)))
+        tasks.append(crawl(args.url, outpath, int(args.start_chapter), int(args.max_chapters)))
     else:
-        for i in range(1, int(args.max_chapters) + 1):
+        for i in range(int(args.start_chapter), int(args.max_chapters) + 1):
             tasks.append(download_images(args.url.format(chapter=i), outpath / f"ch{i}"))
     loop.run_until_complete(asyncio.wait(tasks))
