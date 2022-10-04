@@ -32,7 +32,6 @@ async def download_images(url, folder):
             for index, image in enumerate(images):
                 src = image["src"]
                 filename = f"{index}.jpg"
-                # and args.overwrite:
                 if Path(f"{folder}/{filename}").exists():
                     print("Skipped {filename}")
                     continue
@@ -72,10 +71,11 @@ if __name__ == "__main__":
     parser.add_argument("url", help="URL to download images from")
     parser.add_argument("start_chapter", help="chapter to start downloading from")
     parser.add_argument("max_chapters", help="Maximum number of chapters to download")
-    parser.add_argument("folder", help="Folder to save images to", nargs="?", default=Path(__file__).parent / "Manga")
-    #parser.add_argument("--overwrite", help="Overwrite old files", default=True)
+    parser.add_argument("folder", help="Folder to save images to", nargs="?")
 
     args = parser.parse_args()
+
+    outpath = Path(args.folder) if args.folder else Path(__file__).parent / "Manga"
 
     HEADERS = {}
     HEADERS.update(get_referer(args.url))
@@ -83,8 +83,8 @@ if __name__ == "__main__":
     loop = asyncio.get_event_loop()
     tasks = []
     if r"{chapter}" not in args.url:
-        tasks.append(crawl(args.url, args.folder, int(args.start_chapter), int(args.max_chapters)))
+        tasks.append(crawl(args.url, outpath, int(args.start_chapter), int(args.max_chapters)))
     else:
         for i in range(int(args.start_chapter), int(args.max_chapters) + 1):
-            tasks.append(download_images(args.url.format(chapter=i), args.folder / f"ch{i}"))
+            tasks.append(download_images(args.url.format(chapter=i), outpath / f"ch{i}"))
     loop.run_until_complete(asyncio.wait(tasks))
