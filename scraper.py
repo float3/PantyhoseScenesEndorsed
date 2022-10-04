@@ -33,7 +33,7 @@ async def download_images(url, folder):
                 src = image["src"]
                 filename = f"{index}.jpg"
                 if Path(f"{folder}/{filename}").exists():
-                    print("Skipped {filename}")
+                    print(f"Skipped {filename}")
                     continue
                 async with session.get(src) as response:
                     if response.ok:
