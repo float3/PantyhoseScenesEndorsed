@@ -1,7 +1,8 @@
 # What is this?
 This is supposed to produce [tachiyomi](https://tachiyomi.org) compatible manga https://tachiyomi.org/help/guides/local-manga/#folder-structure
 
-I haven't tested yet
+# Please report manga sites that don't work!
+
 # Requirements
 ```cmd
 pip install beautifulsoup4
