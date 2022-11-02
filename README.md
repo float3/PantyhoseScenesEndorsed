@@ -3,6 +3,8 @@ This is supposed to produce [tachiyomi](https://tachiyomi.org) compatible manga 
 
 # Please report manga sites that don't work!
 
+- vagabond-chapters.com doesn't work anymore, it looks like they added some anti bot measures, potentially because I used them for testing
+
 # Requirements
 ```cmd
 pip install beautifulsoup4
