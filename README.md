@@ -13,12 +13,11 @@ pip install aiohttp
 # Running
 The following commands will download 300 chapters of vagabond in different directories
 ```cmd
-python scraper.py "https://vagabond-chapters.com/manga/vagabond-chapter-{chapter}" 1 300
-python scraper.py "https://vagabond-chapters.com/manga/vagabond-chapter-{chapter}" 1 300 C:\Manga\Vagabond\
-python scraper.py "https://vagabond-chapters.com/manga/vagabond-chapter-{chapter}" 1 300 Manga\Vagabond\
+python scraper.py "https://vagabond-chapters.com/manga/vagabond-chapter-{chapter}" C:\Manga\Vagabond\ 1 300
+python scraper.py "https://vagabond-chapters.com/manga/vagabond-chapter-{chapter}" Manga\Vagabond\ 1 300
 ```
 
 If no `{chapter}` tag is available in the given url the scraper tries to find the **next** button, and crawl along it instead.
 ```cmd
-python scraper.py "https://vagabond-chapters.com/manga/vagabond-chapter-1" 300
+python scraper.py "https://vagabond-chapters.com/manga/vagabond-chapter-1" Manga\Vagabond\ 300
 ```
